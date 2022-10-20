@@ -10,11 +10,11 @@
 
 
 	{
-		"ParameterKey": "demoSubnet1Name",
-		"ParameterValue": "demoSubnet1"
+		"ParameterKey": "demoSubnet1Id",
+		"ParameterValue": "demoSubnet1L"
 	},
 	{
-		"ParameterKey": "demoSubnet2Name",
-		"ParameterValue": "demoSubnet2"
+		"ParameterKey": "demoSubnet2Id",
+		"ParameterValue": "demoSubnet2L"
 	}
 ]

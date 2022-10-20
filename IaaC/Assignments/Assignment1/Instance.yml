@@ -1,0 +1,55 @@
+Parameters:
+  VPCId:
+    Description: Name of VPC Id from Output
+    Type: String
+  GatewayId:
+    Description: Name of Gateway Id from Output
+    Type: String
+
+  demoSubnet1Id:
+    Description: Name of the Subnet1 Id to Output
+    Type: String
+  demoSubnet2Id:
+    Description: Name of the Subnet2 Id to Output
+    Type: String
+
+Resources:
+  # Jumpbox
+  J:
+    Type: AWS::EC2::Instance
+    #DependsOn: ["demoSG1", "demoSubnet1"]
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-08c40ec9ead489470
+      KeyName: demoKey1
+      SecurityGroupIds: [!Ref demoSG1]
+      SubnetId: 
+        Fn::ImportValue: !Ref demoSubnet1Id
+      Tags:
+        - Key: "Name"
+          Value: "J"
+        - Key: "Project"
+          Value: "atudevopsdemo"  
+  
+  demoSG1:
+    Type: AWS::EC2::SecurityGroup
+    #DependsOn: demoVPC1
+    Properties:
+      GroupDescription: Allow ssh to client host
+      VpcId:
+        Fn::ImportValue: !Ref VPCId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: demoSG1

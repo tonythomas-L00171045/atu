@@ -1,16 +1,16 @@
 Parameters:
   VPCId:
-    Description: Name of VPC Id Output
+    Description: Name of VPC Id from Output
     Type: String
   GatewayId:
-    Description: Name of Gateway Id Output
+    Description: Name of Gateway Id from Output
     Type: String
 
-  demoSubnet1Name:
-    Description: Name of the Subnet1
+  demoSubnet1Id:
+    Description: Name of the Subnet1 Id to Output
     Type: String
-  demoSubnet2Name:
-    Description: Name of the Subnet1
+  demoSubnet2Id:
+    Description: Name of the Subnet2 Id to Output
     Type: String
 
 Resources:
@@ -28,7 +28,7 @@ Resources:
        - Key: Project
          Value: atudevopsdemo1
        - Key: Name
-         Value: !Ref demoSubnet1Name
+         Value: !Ref demoSubnet1Id
   
   # Private Subnet      
   demoSubnet2:
@@ -43,9 +43,9 @@ Resources:
        - Key: Project
          Value: atudevopsdemo1
        - Key: Name
-         Value: !Ref demoSubnet2Name
+         Value: !Ref demoSubnet2Id
 
-  # RouteTable for demoSubnet1
+  # RouteTable for Subnet1
   demoRouteTable1:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -74,41 +74,18 @@ Resources:
       RouteTableId: !Ref demoRouteTable1
       SubnetId: !Ref demoSubnet1
 
-  # Jumpbox
-  J:
-    Type: AWS::EC2::Instance
-    DependsOn: ["demoSG1", "demoSubnet1"]
-    Properties:
-      InstanceType: t2.micro
-      ImageId: ami-08c40ec9ead489470
-      KeyName: demoKey1
-      SecurityGroupIds: [!Ref demoSG1]
-      SubnetId: !Ref demoSubnet1
-      Tags:
-        - Key: "Name"
-          Value: "J"
-        - Key: "Project"
-          Value: "atudevopsdemo"  
-  
-  demoSG1:
-    Type: AWS::EC2::SecurityGroup
-    #DependsOn: demoVPC1
-    Properties:
-      GroupDescription: Allow ssh to client host
-      VpcId:
-        Fn::ImportValue: !Ref VPCId
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-      SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-      Tags:
-       - Key: Project
-         Value: atudevopsdemo1
-       - Key: Name
-         Value: demoSG1
+
+# Exports
+Outputs:
+  demoSubnet1:
+    Description: Subnet 1 Id
+    Value: 
+      Ref: demoSubnet1
+    Export:
+      Name: !Ref demoSubnet1Id
+  demoSubnet2:
+    Description: Subnet 2 Id
+    Value:
+      Ref: demoSubnet2
+    Export:
+      Name: !Ref demoSubnet2Id
