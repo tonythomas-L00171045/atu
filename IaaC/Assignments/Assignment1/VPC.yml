@@ -1,0 +1,51 @@
+Parameters:
+  VPCId:
+    Description: Name of VPC Id Output
+    Type: String
+  GatewayId:
+    Description: Name of Gateway Id Output
+    Type: String
+    
+Resources:
+
+  demoVPC1:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+
+  # INTERNET GATEWAY
+  demoGateway1:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: demoGateway1
+  
+  # Associate Gateway & VPC
+  demoGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref demoVPC1
+      InternetGatewayId: !Ref demoGateway1
+
+# Exports
+Outputs:
+  demoVPC1:
+    Description: Top level VPC Id
+    Value: 
+      Ref: demoVPC1
+    Export:
+      Name: !Ref VPCId
+  demoGateway1:
+    Description: Internet Gateway Id
+    Value:
+      Ref: demoGateway1
+    Export:
+      Name: !Ref GatewayId

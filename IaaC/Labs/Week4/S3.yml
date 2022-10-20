@@ -1,0 +1,9 @@
+Resources:
+  s3Bucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      AccessControl: PublicReadWrite
+      BucketName: public-bucket-atu-demo1
+      Tags:
+        - Key: Name
+          Value: demoBucket

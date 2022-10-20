@@ -1,0 +1,11 @@
+[
+    {
+		"ParameterKey": "VPCId",
+		"ParameterValue": "demoVPC1ID"
+	},
+
+    {
+		"ParameterKey": "GatewayId",
+		"ParameterValue": "demoGatewayID"
+	}
+]

@@ -1,0 +1,20 @@
+[
+    {
+		"ParameterKey": "VPCId",
+		"ParameterValue": "demoVPC1ID"
+	},
+    {
+		"ParameterKey": "GatewayId",
+		"ParameterValue": "demoGatewayID"
+	},
+
+
+	{
+		"ParameterKey": "demoSubnet1Name",
+		"ParameterValue": "demoSubnet1"
+	},
+	{
+		"ParameterKey": "demoSubnet2Name",
+		"ParameterValue": "demoSubnet2"
+	}
+]

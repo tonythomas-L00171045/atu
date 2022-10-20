@@ -1,0 +1,124 @@
+Resources:
+
+  demoVPC1:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+
+  # INTERNET GATEWAY
+  demoGateway1:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: demoGateway1
+  
+  # Associate Gateway & VPC
+  demoGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref demoVPC1
+      InternetGatewayId: !Ref demoGateway1
+
+  # Public Subnet
+  demoSubnet1:
+    Type: AWS::EC2::Subnet
+    DependsOn: demoVPC1
+    Properties:
+      VpcId: 
+        Ref: demoVPC1
+      CidrBlock: 10.0.0.0/24
+      AvailabilityZone: "us-east-1a"
+      MapPublicIpOnLaunch: 'true'
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: demoSubnet1
+  
+  # Public Subnet      
+  demoSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: 
+        Ref: demoVPC1
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: "us-east-1a"
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: demoSubnet2
+
+  # RouteTable for demoSubnet1
+  demoRouteTable1:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref demoVPC1
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: demoRouteTable1
+
+  # Route for Subnet1
+  demoRoute1:
+    Type: AWS::EC2::Route
+    DependsOn: demoGatewayAttachment
+    Properties:
+      RouteTableId: !Ref demoRouteTable1
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref demoGateway1
+
+  # Associate Subnet and Routtable
+  demoSubnetRouteTableAssociation1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: !Ref demoRouteTable1
+      SubnetId: !Ref demoSubnet1
+
+  # Jumpbox
+  J:
+    Type: AWS::EC2::Instance
+    DependsOn: ["demoSG1", "demoSubnet1"]
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-08c40ec9ead489470
+      KeyName: demoKey1
+      SecurityGroupIds: [!Ref demoSG1]
+      SubnetId: !Ref demoSubnet1
+      Tags:
+        - Key: "Name"
+          Value: "J"
+        - Key: "Project"
+          Value: "atudevopsdemo"  
+  
+  demoSG1:
+    Type: AWS::EC2::SecurityGroup
+    DependsOn: demoVPC1
+    Properties:
+      GroupDescription: Allow ssh to client host
+      VpcId: !Ref demoVPC1
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: demoSG1

@@ -1,0 +1,19 @@
+Resources:
+  ATUec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: "ami-0f1ee03d06c4c659c"
+      Tags:
+        - Key: "Name"
+          Value: "ec2au11"
+        - Key: "Project"
+          Value: "atudevopsdemo"
+
+Outputs:
+  OutATUEC2Demo:
+    #name of outputs; val refs the resource; export the field
+    Description: EC2 Instance
+    Value: !Ref ATUec2
+    Export:
+      Name: ATUEC2DemoVal

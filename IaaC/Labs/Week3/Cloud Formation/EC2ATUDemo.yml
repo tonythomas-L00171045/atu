@@ -1,0 +1,6 @@
+Resources:
+  ATUec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: "ami-0f1ee03d06c4c659c"
