@@ -1,0 +1,31 @@
+[
+    {
+		"ParameterKey": "VPCId",
+		"ParameterValue": "demoVPC1ID"
+	},
+    {
+		"ParameterKey": "GatewayId",
+		"ParameterValue": "demoGatewayID"
+	},
+    {
+		"ParameterKey": "NatGatewayId",
+		"ParameterValue": ""
+	},
+	
+	{
+		"ParameterKey": "DemoSubnetId",
+		"ParameterValue": "demoSubnetL1"
+	},
+	{
+		"ParameterKey": "DemoRouteTableId",
+		"ParameterValue": "demoRouteTableL1"
+	},
+	{
+		"ParameterKey": "CidrBlock",
+		"ParameterValue": "10.0.0.0/24"
+	},
+	{
+		"ParameterKey": "IsPublic",
+		"ParameterValue": "true"
+	}
+]

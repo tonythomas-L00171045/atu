@@ -6,34 +6,43 @@ Parameters:
     Description: Name of Gateway Id from Output
     Type: String
 
-  demoSubnet1Id:
-    Description: Name of the Subnet1 Id to Output
+  DemoSubnetId:
+    Description: Name of the Subnet Id to Output
     Type: String
-  demoSubnet2Id:
-    Description: Name of the Subnet2 Id to Output
+  ImageId:
+    Description: ami Image Id
+    Type: String
+  InstanceName:
+    Description: Name of the instnce
+    Type: String
+  SecurityGroupName:
+    Description: Name of the Security Group
+    Type: String
+  InstanceKeyName:
+    Description: Name of the Security Group
     Type: String
 
 Resources:
-  # Jumpbox
-  J:
+  # EC2 instance
+  ec2Instance:
     Type: AWS::EC2::Instance
-    #DependsOn: ["demoSG1", "demoSubnet1"]
+    DependsOn: ["demoSG"]
     Properties:
       InstanceType: t2.micro
-      ImageId: ami-08c40ec9ead489470
-      KeyName: demoKey1
-      SecurityGroupIds: [!Ref demoSG1]
+      ImageId: !Ref ImageId
+      KeyName: !Ref InstanceKeyName
+      SecurityGroupIds: [!Ref demoSG]
       SubnetId: 
-        Fn::ImportValue: !Ref demoSubnet1Id
+        Fn::ImportValue: !Ref DemoSubnetId
       Tags:
         - Key: "Name"
-          Value: "J"
+          Value: !Ref InstanceName
         - Key: "Project"
           Value: "atudevopsdemo"  
   
-  demoSG1:
+  demoSG:
     Type: AWS::EC2::SecurityGroup
-    #DependsOn: demoVPC1
+    #DependsOn: demoVPC
     Properties:
       GroupDescription: Allow ssh to client host
       VpcId:
@@ -49,7 +58,7 @@ Resources:
           ToPort: 22
           CidrIp: 0.0.0.0/0
       Tags:
-       - Key: Project
+       - Key: "Project"
          Value: atudevopsdemo1
-       - Key: Name
-         Value: demoSG1
+       - Key: "Name"
+         Value: !Ref SecurityGroupName

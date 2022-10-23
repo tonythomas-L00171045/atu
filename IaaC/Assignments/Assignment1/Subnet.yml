@@ -1,0 +1,94 @@
+Parameters:
+  VPCId:
+    Description: Name of VPC Id from Output
+    Type: String
+  GatewayId:
+    Description: Name of Gateway Id from Output
+    Type: String
+  NatGatewayId:
+    Description: Name of NAT Gateway Id from Output
+    Type: String
+  DemoSubnetId:
+    Description: Name of the Subnet Id to Output
+    Type: String
+  DemoRouteTableId:
+    Description: Name of the Subnet Id to Output
+    Type: String
+  CidrBlock:
+    Description: IP range for subnet
+    Type: String
+    Default: 10.0.0.0/24
+  IsPublic:
+    Description: MapPublicIpOnLaunch = true
+    Type: String
+    Default: true
+
+Conditions:
+  PublicSubnet: 
+    Fn::Equals: 
+    - !Ref IsPublic
+    - true
+
+Resources:
+
+  # Public Subnet
+  demoSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: 
+        Fn::ImportValue: !Ref VPCId
+      CidrBlock: !Ref CidrBlock
+      AvailabilityZone: "us-east-1a"
+      MapPublicIpOnLaunch: !Ref IsPublic
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: !Ref DemoSubnetId
+
+  # RouteTable for Subnet1
+  demoRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Fn::ImportValue: !Ref VPCId
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: !Ref DemoRouteTableId
+
+  # Route for Subnet1
+  demoRoute:
+    Type: AWS::EC2::Route
+    #DependsOn: demoGatewayAttachment
+    Properties:
+      RouteTableId: !Ref demoRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: 
+        'Fn::If':
+        - PublicSubnet
+        - Fn::ImportValue: !Ref GatewayId
+        - ''
+      NatGatewayId:   
+        'Fn::If':
+        - PublicSubnet
+        - ''
+        - Fn::ImportValue: !Ref NatGatewayId        
+
+  # Associate Subnet and Routtable
+  demoSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: !Ref demoRouteTable
+      SubnetId: !Ref demoSubnet
+
+
+# Exports
+Outputs:
+  demoSubnet:
+    Description: Subnet Id
+    Value: 
+      Ref: demoSubnet
+    Export:
+      Name: !Ref DemoSubnetId

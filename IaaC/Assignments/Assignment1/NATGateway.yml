@@ -1,0 +1,30 @@
+Parameters:
+  PublicSubnetId:
+    Description: Name of PUblic Subnet Id variable from Output
+    Type: String
+  NATGatewayName:
+    Description: Name of the NAT Gateway to Output
+    Type: String
+
+Resources:
+  # NAT Gateway meant for private subnet
+  demoNATGateway:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      SubnetId: 
+        Fn::ImportValue: !Ref PublicSubnetId
+      ConnectivityType: private
+      Tags:
+       - Key: Project
+         Value: atudevopsdemo1
+       - Key: Name
+         Value: !Ref NATGatewayName
+
+# Exports
+Outputs:
+  demoNATGateway:
+    Description: NAT Gateway Id
+    Value: 
+      Ref: demoNATGateway
+    Export:
+      Name: !Ref NATGatewayName

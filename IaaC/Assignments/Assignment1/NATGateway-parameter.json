@@ -1,0 +1,10 @@
+[
+    {
+		"ParameterKey": "PublicSubnetId",
+		"ParameterValue": "demoSubnetL1"
+	},
+    {
+		"ParameterKey": "NATGatewayName",
+		"ParameterValue": "NATGatewayL"
+	}
+]

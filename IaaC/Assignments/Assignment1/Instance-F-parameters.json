@@ -11,7 +11,7 @@
 
 	{
 		"ParameterKey": "DemoSubnetId",
-		"ParameterValue": "demoSubnetL1"
+		"ParameterValue": "demoSubnetL2"
 	},
 	{
 		"ParameterKey": "ImageId",
@@ -19,7 +19,7 @@
 	},
 	{
 		"ParameterKey": "InstanceName",
-		"ParameterValue": "J"
+		"ParameterValue": "F"
 	},
 	{
 		"ParameterKey": "InstanceKeyName",
@@ -27,7 +27,7 @@
 	},
 	{
 		"ParameterKey": "SecurityGroupName",
-		"ParameterValue": "demoSecurityGroup1"
+		"ParameterValue": "demoSecurityGroup2"
 	}
 	
 ]
