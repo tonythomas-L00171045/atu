@@ -5,6 +5,9 @@ Parameters:
   GatewayId:
     Description: Name of Gateway Id from Output
     Type: String
+  NatGatewayId:
+    Description: Name of NAT Gateway Id from Output
+    Type: String
   DemoSubnetId:
     Description: Name of the Subnet Id to Output
     Type: String
@@ -19,6 +22,12 @@ Parameters:
     Description: MapPublicIpOnLaunch = true
     Type: String
     Default: true
+
+Conditions:
+  PublicSubnet: 
+    Fn::Equals: 
+    - !Ref IsPublic
+    - true
 
 Resources:
 
@@ -57,14 +66,23 @@ Resources:
       RouteTableId: !Ref demoRouteTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: 
-        Fn::ImportValue: !Ref GatewayId
+        'Fn::If':
+        - PublicSubnet
+        - Fn::ImportValue: !Ref GatewayId
+        - ''
+      NatGatewayId:   
+        'Fn::If':
+        - PublicSubnet
+        - ''
+        - Fn::ImportValue: !Ref NatGatewayId        
 
-  # Associate Subnet and Routetable
+  # Associate Subnet and Routtable
   demoSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
       RouteTableId: !Ref demoRouteTable
       SubnetId: !Ref demoSubnet
+
 
 # Exports
 Outputs:

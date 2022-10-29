@@ -23,11 +23,19 @@
 	},
 	{
 		"ParameterKey": "InstanceKeyName",
-		"ParameterValue": "demoKey1"
+		"ParameterValue": "{{resolve:ssm:demoKey}}"
 	},
 	{
 		"ParameterKey": "SecurityGroupName",
 		"ParameterValue": "demoSecurityGroup2"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressIP",
+		"ParameterValue": "10.0.0.0/24"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressIP",
+		"ParameterValue": "10.0.0.0/24"
 	}
 	
 ]

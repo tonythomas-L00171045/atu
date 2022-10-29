@@ -7,10 +7,6 @@
 		"ParameterKey": "GatewayId",
 		"ParameterValue": "demoGatewayID"
 	},
-    {
-		"ParameterKey": "NatGatewayId",
-		"ParameterValue": "NATGatewayL"
-	},
 	
 	{
 		"ParameterKey": "DemoSubnetId",
