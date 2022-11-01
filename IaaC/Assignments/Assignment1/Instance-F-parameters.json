@@ -10,12 +10,12 @@
 
 
 	{
-		"ParameterKey": "DemoSubnetId",
+		"ParameterKey": "SubnetId",
 		"ParameterValue": "demoSubnetL2"
 	},
 	{
 		"ParameterKey": "ImageId",
-		"ParameterValue": "ami-08c40ec9ead489470"
+		"ParameterValue": "ami-00b8ef227cc77760b"
 	},
 	{
 		"ParameterKey": "InstanceName",
@@ -30,11 +30,40 @@
 		"ParameterValue": "demoSecurityGroup2"
 	},
 	{
-		"ParameterKey": "SecurityGroupEgressIP",
+		"ParameterKey": "SecurityGroupEgressProtocol1",
+		"ParameterValue": "icmp"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressPort1",
+		"ParameterValue": "-1"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressIP1",
+		"ParameterValue": "0.0.0.0/0"
+	},
+	
+	{
+		"ParameterKey": "SecurityGroupIngressProtocol1",
+		"ParameterValue": "icmp"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressPort1",
+		"ParameterValue": "-1"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressIP1",
 		"ParameterValue": "10.0.0.0/24"
 	},
 	{
-		"ParameterKey": "SecurityGroupIngressIP",
+		"ParameterKey": "SecurityGroupIngressProtocol2",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressPort2",
+		"ParameterValue": "80"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressIP2",
 		"ParameterValue": "10.0.0.0/24"
 	}
 	

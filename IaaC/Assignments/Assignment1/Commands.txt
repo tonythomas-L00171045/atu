@@ -1,0 +1,17 @@
+aws cloudformation create-stack --stack-name parameters-separate-files --template-body file://EC2ATUDemo_Update.yml --parameters file://EC2ATUDemo_Update_Params.json
+
+aws cloudformation create-stack --stack-name VPC --template-body file://VPC.yml --parameters file://VPC-parameters.json
+aws cloudformation create-stack --stack-name SubnetL1 --template-body file://Subnet.yml --parameters file://Subnet-L1-parameters.json
+aws cloudformation create-stack --stack-name SubnetL2 --template-body file://Subnet.yml --parameters file://Subnet-L2-parameters.json
+aws cloudformation create-stack --stack-name InstanceJ --template-body file://Instance.yml --parameters file://Instance-J-parameters.json
+aws cloudformation create-stack --stack-name InstanceF --template-body file://Instance.yml --parameters file://Instance-F-parameters.json
+
+aws cloudformation create-stack --stack-name NatGatewayL --template-body file://NATGateway.yml --parameters file://NATGateway-parameter.json
+
+Change permission of demoKey (KeyPair)
+=======================================
+chmod 400 demoKey1.pem
+parameters-separate-files-demoVPC1ID
+
+demoSubnet1L
+demoSubnet1L

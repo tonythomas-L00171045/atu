@@ -1,16 +1,14 @@
 [
-    {
+	{
 		"ParameterKey": "VPCId",
 		"ParameterValue": "demoVPC1ID"
 	},
-    {
+	{
 		"ParameterKey": "GatewayId",
 		"ParameterValue": "demoGatewayID"
 	},
-
-
 	{
-		"ParameterKey": "DemoSubnetId",
+		"ParameterKey": "SubnetId",
 		"ParameterValue": "demoSubnetL1"
 	},
 	{
@@ -30,12 +28,40 @@
 		"ParameterValue": "demoSecurityGroup1"
 	},
 	{
-		"ParameterKey": "SecurityGroupEgressIP",
+		"ParameterKey": "SecurityGroupEgressProtocol1",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressPort1",
+		"ParameterValue": "80"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressIP1",
+		"ParameterValue": "0.0.0.0/0"
+	},
+	
+	{
+		"ParameterKey": "SecurityGroupIngressProtocol1",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressPort1",
+		"ParameterValue": "22"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressIP1",
 		"ParameterValue": "0.0.0.0/0"
 	},
 	{
-		"ParameterKey": "SecurityGroupIngressIP",
+		"ParameterKey": "SecurityGroupIngressProtocol2",
+		"ParameterValue": "icmp"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressPort2",
+		"ParameterValue": "-1"
+	},
+	{
+		"ParameterKey": "SecurityGroupIngressIP2",
 		"ParameterValue": "0.0.0.0/0"
 	}
-	
 ]

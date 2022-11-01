@@ -9,11 +9,11 @@
 	},
 	
 	{
-		"ParameterKey": "DemoSubnetId",
+		"ParameterKey": "SubnetId",
 		"ParameterValue": "demoSubnetL1"
 	},
 	{
-		"ParameterKey": "DemoRouteTableId",
+		"ParameterKey": "RouteTableId",
 		"ParameterValue": "demoRouteTableL1"
 	},
 	{
@@ -23,5 +23,9 @@
 	{
 		"ParameterKey": "IsPublic",
 		"ParameterValue": "true"
-	}
+	},
+	{
+		"ParameterKey": "SubnetDestinationCidrBlock",
+		"ParameterValue": "0.0.0.0/0"
+	}	
 ]
