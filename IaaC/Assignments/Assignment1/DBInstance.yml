@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Template for creating a DB instance and a security group.
+
+Parameters:
+  VPCId:
+    Description: Name of VPC Id from Output
+    Type: String
+  InstanceName:
+    Description: Name of the db instance
+    Type: String
+  DBInstanceIdentifier:
+    Description: Name of the db instance
+    Type: String
+  VPCSecurityGroupsName:
+    Description: Name of the security group
+    Type: String
+  DBUsername:
+    Description: username of the db
+    Type: String
+  DBPassword:
+    Description: Password of the db
+    Type: String
+  DBSubnetGroupName:
+    Description: Subnet group's name
+    Type: String
+  DBSubnetGroupDescription:
+    Description: Subnet group's description
+    Type: String
+  Subnet1Id:
+    Description: First subnet Id
+    Type: String
+  Subnet2Id:
+    Description: Second subnet Id
+    Type: String
+
+Resources:
+  DBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBSubnetGroupName: !Ref DBSubnetGroupName
+      DBInstanceIdentifier: !Ref DBInstanceIdentifier
+      VPCSecurityGroups:
+        - !GetAtt DBEC2SecurityGroup.GroupId
+      AllocatedStorage: "5"
+      DBInstanceClass: db.t3.micro
+      Engine: postgres
+      MasterUsername: !Ref DBUsername
+      MasterUserPassword: !Ref DBPassword
+      Tags:
+        - Key: Name
+          Value: !Ref InstanceName
+    DeletionPolicy: Snapshot
+    UpdateReplacePolicy: Snapshot
+
+  DBSubnet:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties: 
+      DBSubnetGroupName: !Ref DBSubnetGroupName
+      DBSubnetGroupDescription: !Ref DBSubnetGroupDescription
+      SubnetIds: 
+        - Fn::ImportValue: !Ref Subnet1Id
+        - Fn::ImportValue: !Ref Subnet2Id
+      Tags: 
+        - Key: Name
+          Value: !Ref DBSubnetGroupName
+
+  DBEC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId:
+        Fn::ImportValue: !Ref VPCId
+      GroupName: !Ref VPCSecurityGroupsName
+      GroupDescription: Allow postgres inbound traffic
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: "0.0.0.0/0"
+      Tags:
+        - Key: Name
+          Value: !Ref VPCSecurityGroupsName

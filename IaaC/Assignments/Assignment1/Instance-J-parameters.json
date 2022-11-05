@@ -33,11 +33,37 @@
 	},
 	{
 		"ParameterKey": "SecurityGroupEgressPort1",
-		"ParameterValue": "80"
+		"ParameterValue": "22"
 	},
 	{
 		"ParameterKey": "SecurityGroupEgressIP1",
+		"ParameterValue": "10.0.1.0/24"
+	},
+
+	{
+		"ParameterKey": "SecurityGroupEgressProtocol2",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressPort2",
+		"ParameterValue": "80"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressIP2",
 		"ParameterValue": "0.0.0.0/0"
+	},
+
+	{
+		"ParameterKey": "SecurityGroupEgressProtocol3",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressPort3",
+		"ParameterValue": "22"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressIP3",
+		"ParameterValue": "10.0.2.0/24"
 	},
 	
 	{

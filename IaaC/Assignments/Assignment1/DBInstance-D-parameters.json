@@ -1,0 +1,43 @@
+[
+    {
+		"ParameterKey": "VPCId",
+		"ParameterValue": "demoVPC1ID"
+	},
+    {
+        "ParameterKey": "VPCSecurityGroupsName",
+        "ParameterValue": "demoSecurityGroupD"
+    },
+    {
+        "ParameterKey": "DBInstanceIdentifier",
+        "ParameterValue": "demoDB"
+    },
+    {
+        "ParameterKey": "DBUsername",
+        "ParameterValue": "sa"
+    },
+    {
+        "ParameterKey": "DBPassword",
+        "ParameterValue": "12345678"
+    },
+    {
+        "ParameterKey": "InstanceName",
+        "ParameterValue": "D"
+    },
+    {
+        "ParameterKey": "Subnet1Id",
+        "ParameterValue": "demoSubnetR2a"
+    },
+    {
+        "ParameterKey": "Subnet2Id",
+        "ParameterValue": "demoSubnetR2b"
+    },
+    {
+        "ParameterKey": "DBSubnetGroupName",
+        "ParameterValue": "demoDBSubnetGroup"
+    },
+    {
+        "ParameterKey": "DBSubnetGroupDescription",
+        "ParameterValue": "DB Subnet for RDS"
+    }
+    
+]

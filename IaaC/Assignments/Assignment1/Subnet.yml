@@ -28,6 +28,10 @@ Parameters:
     Default: 0.0.0.0/0
     AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
     ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  AvailabilityZone:
+    Description: Availability zone of subnet
+    Type: String
+    Default: "us-east-1a"
 
 Conditions:
   CreatePublicRoute: !Equals 
@@ -44,7 +48,7 @@ Resources:
       VpcId: 
         Fn::ImportValue: !Ref VPCId
       CidrBlock: !Ref CidrBlock
-      AvailabilityZone: "us-east-1a"
+      AvailabilityZone: !Ref AvailabilityZone
       MapPublicIpOnLaunch: !Ref IsPublic
       Tags:
        - Key: Project
@@ -71,7 +75,7 @@ Resources:
       RouteTableId: !Ref demoRouteTable
       SubnetId: !Ref demoSubnet
 
-  # Route for Subnet1
+  # Route for Public Subnet
   demoRoute:
     Type: AWS::EC2::Route
     Condition: CreatePublicRoute
