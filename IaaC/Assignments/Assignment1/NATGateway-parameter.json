@@ -4,7 +4,11 @@
 		"ParameterValue": "demoSubnetL1"
 	},
     {
-		"ParameterKey": "NATGatewayName",
-		"ParameterValue": "NATGatewayL"
+		"ParameterKey": "NATGatewayId",
+		"ParameterValue": "NATGatewayR"
+	},
+    {
+		"ParameterKey": "RouteTableId",
+		"ParameterValue": "demoRouteTableR1"
 	}
 ]

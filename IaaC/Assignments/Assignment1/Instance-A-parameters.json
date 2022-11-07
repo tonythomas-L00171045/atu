@@ -52,6 +52,19 @@
 		"ParameterKey": "SecurityGroupEgressIP2",
 		"ParameterValue": "0.0.0.0/0"
 	},
+
+	{
+		"ParameterKey": "SecurityGroupEgressProtocol3",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressPort3",
+		"ParameterValue": "5432"
+	},
+	{
+		"ParameterKey": "SecurityGroupEgressIP3",
+		"ParameterValue": "10.0.4.0/24"
+	},
 	
 	{
 		"ParameterKey": "SecurityGroupIngressProtocol1",

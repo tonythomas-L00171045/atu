@@ -13,11 +13,11 @@
     },
     {
         "ParameterKey": "DBUsername",
-        "ParameterValue": "sa"
+        "ParameterValue": "{{resolve:ssm-secure:PostgresMasterUsername}}"
     },
     {
         "ParameterKey": "DBPassword",
-        "ParameterValue": "12345678"
+        "ParameterValue": "{{resolve:ssm-secure:PostgresMasterPassword}}"
     },
     {
         "ParameterKey": "InstanceName",

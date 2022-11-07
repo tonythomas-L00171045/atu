@@ -5,7 +5,7 @@
 	},
     {
 		"ParameterKey": "GatewayId",
-		"ParameterValue": "demoGatewayID"
+		"ParameterValue": "NATGatewayR"
 	},
 	
 	{
@@ -22,10 +22,16 @@
 	},
 	{
 		"ParameterKey": "IsPublic",
-		"ParameterValue": "true"
+		"ParameterValue": "false"
 	},
 	{
 		"ParameterKey": "SubnetDestinationCidrBlock",
 		"ParameterValue": "0.0.0.0/0"
-	}	
+	}
+	,
+	{
+		"ParameterKey": "HasNATGateway",
+		"ParameterValue": "true"
+	}
+	
 ]

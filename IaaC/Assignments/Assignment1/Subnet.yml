@@ -2,16 +2,16 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: Create Subnet and Routetable
 Parameters:
   VPCId:
-    Description: Name of VPC Id from Output
+    Description: Name of variable for VPC Id from Output
     Type: String
   GatewayId:
-    Description: Name of Gateway Id from Output
+    Description: Name of variable for (NAT) Gateway Id from Output
     Type: String
   SubnetId:
-    Description: Name of the Subnet Id to Output
+    Description: Name of the variable for Subnet Id to Output
     Type: String
   RouteTableId:
-    Description: Name of the RouteTable Id to Output
+    Description: Name of the variable for RouteTable Id to Output
     Type: String
   CidrBlock:
     Description: IP range for subnet
@@ -32,17 +32,23 @@ Parameters:
     Description: Availability zone of subnet
     Type: String
     Default: "us-east-1a"
+  HasNATGateway:
+    Description: Whether we need (NAT) Gateway
+    Type: String
+    Default: false
 
 Conditions:
   CreatePublicRoute: !Equals 
     - !Ref IsPublic
     - true
-
+  CreateNATRoute: !Equals 
+    - !Ref HasNATGateway
+    - true
 
 Resources:
 
   # Public Subnet
-  demoSubnet:
+  Subnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: 
@@ -57,7 +63,7 @@ Resources:
          Value: !Ref SubnetId
 
   # RouteTable for Subnet1
-  demoRouteTable:
+  RouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId:
@@ -69,27 +75,44 @@ Resources:
          Value: !Ref RouteTableId
 
   # Associate Subnet and Routetable
-  demoSubnetRouteTableAssociation:
+  SubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref demoRouteTable
-      SubnetId: !Ref demoSubnet
+      RouteTableId: !Ref RouteTable
+      SubnetId: !Ref Subnet
 
   # Route for Public Subnet
-  demoRoute:
+  Route:
     Type: AWS::EC2::Route
     Condition: CreatePublicRoute
     Properties:
-      RouteTableId: !Ref demoRouteTable
+      RouteTableId: !Ref RouteTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: 
         Fn::ImportValue: !Ref GatewayId
 
+  # Route for NAT Gateway
+  Route:
+    Type: AWS::EC2::Route
+    Condition: CreateNATRoute
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: 
+        Fn::ImportValue: !Ref GatewayId
+
 # Exports
 Outputs:
-  demoSubnet:
+  Subnet:
     Description: Subnet Id
     Value: 
-      Ref: demoSubnet
+      Ref: Subnet
     Export:
       Name: !Ref SubnetId
+
+  RouteTable:
+    Description: RouteTable Id
+    Value: 
+      Ref: RouteTable
+    Export:
+      Name: !Ref RouteTableId

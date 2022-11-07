@@ -1,30 +1,45 @@
 Parameters:
   PublicSubnetId:
-    Description: Name of PUblic Subnet Id variable from Output
+    Description: Name of Subnet Id variable from Output
     Type: String
-  NATGatewayName:
-    Description: Name of the NAT Gateway to Output
+  NATGatewayId:
+    Description: Name of the NAT GatewayId to Output
+    Type: String
+  RouteTableId:
+    Description: Name of RouteTable to associate
     Type: String
 
 Resources:
   # NAT Gateway meant for private subnet
-  demoNATGateway:
+  NATGateway:
     Type: AWS::EC2::NatGateway
     Properties:
       SubnetId: 
         Fn::ImportValue: !Ref PublicSubnetId
-      ConnectivityType: private
+      AllocationId: !GetAtt NATGatewayEIP.AllocationId
       Tags:
        - Key: Project
          Value: atudevopsdemo1
        - Key: Name
-         Value: !Ref NATGatewayName
+         Value: !Ref NATGatewayId
+  NATGatewayEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
+  #RouteNATGateway:
+  #  DependsOn: NATGateway
+  #  Type: AWS::EC2::Route
+  #  Properties:
+  #    RouteTableId: !Ref RouteTableId
+  #    DestinationCidrBlock: '0.0.0.0/0'
+  #    NatGatewayId: !Ref NATGateway
 
 # Exports
 Outputs:
   demoNATGateway:
     Description: NAT Gateway Id
     Value: 
-      Ref: demoNATGateway
+      Ref: NATGateway
     Export:
-      Name: !Ref NATGatewayName
+      Name: !Ref NATGatewayId
