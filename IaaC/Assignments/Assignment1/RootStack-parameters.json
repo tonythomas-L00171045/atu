@@ -1,0 +1,401 @@
+[
+	{
+		"ParameterKey": "VPCId",
+		"ParameterValue": "demoVPC1ID"
+	},
+	{
+		"ParameterKey": "GatewayId",
+		"ParameterValue": "demoGatewayID"
+	},
+	
+	{
+		"ParameterKey": "SubnetL1SubnetId",
+		"ParameterValue": "demoSubnetL1"
+	},
+	{
+		"ParameterKey": "SubnetL1RouteTableId",
+		"ParameterValue": "demoRouteTableL1"
+	},
+	{
+		"ParameterKey": "SubnetL1CidrBlock",
+		"ParameterValue": "10.0.0.0/24"
+	},
+	{
+		"ParameterKey": "SubnetL1IsPublic",
+		"ParameterValue": "true"
+	},
+	{
+		"ParameterKey": "SubnetL1SubnetDestinationCidrBlock",
+		"ParameterValue": "0.0.0.0/0"
+	},
+
+	{
+		"ParameterKey": "SubnetL2SubnetId",
+		"ParameterValue": "demoSubnetL2"
+	},
+	{
+		"ParameterKey": "SubnetL2RouteTableId",
+		"ParameterValue": "demoRouteTableL2"
+	},
+	{
+		"ParameterKey": "SubnetL2CidrBlock",
+		"ParameterValue": "10.0.1.0/24"
+	},
+	{
+		"ParameterKey": "SubnetL2IsPublic",
+		"ParameterValue": "false"
+	},
+	{
+		"ParameterKey": "SubnetL2SubnetDestinationCidrBlock",
+		"ParameterValue": "0.0.0.0/0"
+	},
+
+
+	{
+		"ParameterKey": "NATGatewayPublicSubnetId",
+		"ParameterValue": "demoSubnetL1"
+	},
+    {
+		"ParameterKey": "NATGatewayNATGatewayId",
+		"ParameterValue": "NATGatewayR"
+	},
+	
+	{
+		"ParameterKey": "SubnetR1SubnetId",
+		"ParameterValue": "demoSubnetR1"
+	},
+	{
+		"ParameterKey": "SubnetR1RouteTableId",
+		"ParameterValue": "demoRouteTableR1"
+	},
+	{
+		"ParameterKey": "SubnetR1CidrBlock",
+		"ParameterValue": "10.0.2.0/24"
+	},
+	{
+		"ParameterKey": "SubnetR1IsPublic",
+		"ParameterValue": "false"
+	},
+	{
+		"ParameterKey": "SubnetR1SubnetDestinationCidrBlock",
+		"ParameterValue": "0.0.0.0/0"
+	}
+	,
+	{
+		"ParameterKey": "SubnetR1HasNATGateway",
+		"ParameterValue": "true"
+	},
+
+
+	{
+		"ParameterKey": "SubnetR2aSubnetId",
+		"ParameterValue": "demoSubnetR2a"
+	},
+	{
+		"ParameterKey": "SubnetR2aRouteTableId",
+		"ParameterValue": "demoRouteTableR2a"
+	},
+	{
+		"ParameterKey": "SubnetR2aCidrBlock",
+		"ParameterValue": "10.0.3.0/24"
+	},
+	{
+		"ParameterKey": "SubnetR2aIsPublic",
+		"ParameterValue": "false"
+	},
+	{
+		"ParameterKey": "SubnetR2aSubnetDestinationCidrBlock",
+		"ParameterValue": "0.0.0.0/0"
+	},
+
+
+	{
+		"ParameterKey": "SubnetR2bSubnetId",
+		"ParameterValue": "demoSubnetR2b"
+	},
+	{
+		"ParameterKey": "SubnetR2bRouteTableId",
+		"ParameterValue": "demoRouteTableR2b"
+	},
+	{
+		"ParameterKey": "SubnetR2bCidrBlock",
+		"ParameterValue": "10.0.4.0/24"
+	},
+	{
+		"ParameterKey": "SubnetR2bIsPublic",
+		"ParameterValue": "false"
+	},
+	{
+		"ParameterKey": "SubnetR2bSubnetDestinationCidrBlock",
+		"ParameterValue": "0.0.0.0/0"
+	},
+	{
+		"ParameterKey": "SubnetR2bAvailabilityZone",
+		"ParameterValue": "us-east-1b"
+	},
+
+		
+	{
+		"ParameterKey": "InstanceJSubnetId",
+		"ParameterValue": "demoSubnetL1"
+	},
+	{
+		"ParameterKey": "InstanceJImageId",
+		"ParameterValue": "ami-08c40ec9ead489470"
+	},
+	{
+		"ParameterKey": "InstanceJInstanceName",
+		"ParameterValue": "J"
+	},
+	{
+		"ParameterKey": "InstanceJInstanceKeyName",
+		"ParameterValue": "{{resolve:ssm:demoKey}}"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupName",
+		"ParameterValue": "demoSecurityGroup1"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressProtocol1",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressPort1",
+		"ParameterValue": "22"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressIP1",
+		"ParameterValue": "10.0.1.0/24"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressProtocol2",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressPort2",
+		"ParameterValue": "80"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressIP2",
+		"ParameterValue": "0.0.0.0/0"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressProtocol3",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressPort3",
+		"ParameterValue": "22"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupEgressIP3",
+		"ParameterValue": "10.0.2.0/24"
+	},	
+	{
+		"ParameterKey": "InstanceJSecurityGroupIngressProtocol1",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupIngressPort1",
+		"ParameterValue": "22"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupIngressIP1",
+		"ParameterValue": "0.0.0.0/0"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupIngressProtocol2",
+		"ParameterValue": "icmp"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupIngressPort2",
+		"ParameterValue": "-1"
+	},
+	{
+		"ParameterKey": "InstanceJSecurityGroupIngressIP2",
+		"ParameterValue": "0.0.0.0/0"
+	},
+
+
+	{
+		"ParameterKey": "InstanceFSubnetId",
+		"ParameterValue": "demoSubnetL2"
+	},
+	{
+		"ParameterKey": "InstanceFImageId",
+		"ParameterValue": "ami-00b8ef227cc77760b"
+	},
+	{
+		"ParameterKey": "InstanceFInstanceName",
+		"ParameterValue": "F"
+	},
+	{
+		"ParameterKey": "InstanceFInstanceKeyName",
+		"ParameterValue": "{{resolve:ssm:demoKey}}"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupName",
+		"ParameterValue": "demoSecurityGroup2"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupEgressProtocol1",
+		"ParameterValue": "icmp"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupEgressPort1",
+		"ParameterValue": "-1"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupEgressIP1",
+		"ParameterValue": "0.0.0.0/0"
+	},	
+	{
+		"ParameterKey": "InstanceFSecurityGroupIngressProtocol1",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupIngressPort1",
+		"ParameterValue": "22"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupIngressIP1",
+		"ParameterValue": "10.0.0.0/24"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupIngressProtocol2",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupIngressPort2",
+		"ParameterValue": "80"
+	},
+	{
+		"ParameterKey": "InstanceFSecurityGroupIngressIP2",
+		"ParameterValue": "10.0.0.0/24"
+	},
+
+
+	{
+		"ParameterKey": "InstanceASubnetId",
+		"ParameterValue": "demoSubnetR1"
+	},
+	{
+		"ParameterKey": "InstanceAImageId",
+		"ParameterValue": "ami-00b8ef227cc77760b"
+	},
+	{
+		"ParameterKey": "InstanceAInstanceName",
+		"ParameterValue": "A"
+	},
+	{
+		"ParameterKey": "InstanceAInstanceKeyName",
+		"ParameterValue": "{{resolve:ssm:demoKey}}"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupName",
+		"ParameterValue": "demoSecurityGroupR1"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressProtocol1",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressPort1",
+		"ParameterValue": "5432"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressIP1",
+		"ParameterValue": "10.0.3.0/24"
+	},
+
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressProtocol2",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressPort2",
+		"ParameterValue": "80"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressIP2",
+		"ParameterValue": "0.0.0.0/0"
+	},
+
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressProtocol3",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressPort3",
+		"ParameterValue": "5432"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupEgressIP3",
+		"ParameterValue": "10.0.4.0/24"
+	},
+	
+	{
+		"ParameterKey": "InstanceASecurityGroupIngressProtocol1",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupIngressPort1",
+		"ParameterValue": "22"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupIngressIP1",
+		"ParameterValue": "10.0.0.0/24"
+	},
+
+	{
+		"ParameterKey": "InstanceASecurityGroupIngressProtocol2",
+		"ParameterValue": "tcp"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupIngressPort2",
+		"ParameterValue": "80"
+	},
+	{
+		"ParameterKey": "InstanceASecurityGroupIngressIP2",
+		"ParameterValue": "10.0.0.0/24"
+	},
+
+
+
+    {
+        "ParameterKey": "DBInstanceDVPCSecurityGroupsName",
+        "ParameterValue": "demoSecurityGroupD"
+    },
+    {
+        "ParameterKey": "DBInstanceDDBInstanceIdentifier",
+        "ParameterValue": "demoDB"
+    },
+    {
+        "ParameterKey": "DBInstanceDDBUsername",
+        "ParameterValue": "{{resolve:ssm:PostgresMasterUsername}}"
+    },
+    {
+        "ParameterKey": "DBInstanceDDBPassword",
+        "ParameterValue": "{{resolve:ssm:PostgresMasterPassword}}"
+    },
+    {
+        "ParameterKey": "DBInstanceDInstanceName",
+        "ParameterValue": "D"
+    },
+    {
+        "ParameterKey": "DBInstanceDSubnet1Id",
+        "ParameterValue": "demoSubnetR2a"
+    },
+    {
+        "ParameterKey": "DBInstanceDSubnet2Id",
+        "ParameterValue": "demoSubnetR2b"
+    },
+    {
+        "ParameterKey": "DBInstanceDDBSubnetGroupName",
+        "ParameterValue": "demoDBSubnetGroup"
+    },
+    {
+        "ParameterKey": "DBInstanceDDBSubnetGroupDescription",
+        "ParameterValue": "DB Subnet for RDS"
+    }	
+]

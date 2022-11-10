@@ -3,16 +3,16 @@ Description: Template for creating a DB instance and a security group.
 
 Parameters:
   VPCId:
-    Description: Name of VPC Id from Output
+    Description: Name of VPC Id from Output of VPC stack
     Type: String
   InstanceName:
     Description: Name of the db instance
     Type: String
   DBInstanceIdentifier:
-    Description: Name of the db instance
+    Description: db instance identifier
     Type: String
   VPCSecurityGroupsName:
-    Description: Name of the security group
+    Description: Name of the variable for security group
     Type: String
   DBUsername:
     Description: username of the db

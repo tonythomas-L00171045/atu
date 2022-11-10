@@ -1,0 +1,706 @@
+Parameters:
+  VPCId:
+    Description: Name of VPC Id Output
+    Type: String
+  GatewayId:
+    Description: Name of Gateway Id Output
+    Type: String
+
+  SubnetL1SubnetId:
+    Description: Name of the variable for Subnet Id to Output
+    Type: String
+  SubnetL1RouteTableId:
+    Description: Name of the variable for RouteTable Id to Output
+    Type: String
+  SubnetL1CidrBlock:
+    Description: IP range for subnet
+    Type: String
+    Default: 10.0.0.0/24
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetL1IsPublic:
+    Description: Set whether the subnet is public; sets MapPublicIpOnLaunch = true
+    Type: String
+    Default: true
+  SubnetL1SubnetDestinationCidrBlock:
+    Type: String
+    Default: 0.0.0.0/0
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetL1AvailabilityZone:
+    Description: Availability zone of subnet
+    Type: String
+    Default: "us-east-1a"
+  SubnetL1HasNATGateway:
+    Description: Whether we need (NAT) Gateway
+    Type: String
+    Default: false
+  
+  SubnetL2SubnetId:
+    Description: Name of the variable for Subnet Id to Output
+    Type: String
+  SubnetL2RouteTableId:
+    Description: Name of the variable for RouteTable Id to Output
+    Type: String
+  SubnetL2CidrBlock:
+    Description: IP range for subnet
+    Type: String
+    Default: 10.0.0.0/24
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetL2IsPublic:
+    Description: Set whether the subnet is public; sets MapPublicIpOnLaunch = true
+    Type: String
+    Default: true
+  SubnetL2SubnetDestinationCidrBlock:
+    Type: String
+    Default: 0.0.0.0/0
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetL2AvailabilityZone:
+    Description: Availability zone of subnet
+    Type: String
+    Default: "us-east-1a"
+  SubnetL2HasNATGateway:
+    Description: Whether we need (NAT) Gateway
+    Type: String
+    Default: false
+  
+  NATGatewayPublicSubnetId:
+    Description: Name of Subnet Id variable from Output
+    Type: String
+  NATGatewayNATGatewayId:
+    Description: Name of the NAT GatewayId to Output
+    Type: String
+
+  SubnetR1SubnetId:
+    Description: Name of the variable for Subnet Id to Output
+    Type: String
+  SubnetR1RouteTableId:
+    Description: Name of the variable for RouteTable Id to Output
+    Type: String
+  SubnetR1CidrBlock:
+    Description: IP range for subnet
+    Type: String
+    Default: 10.0.0.0/24
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetR1IsPublic:
+    Description: Set whether the subnet is public; sets MapPublicIpOnLaunch = true
+    Type: String
+    Default: true
+  SubnetR1SubnetDestinationCidrBlock:
+    Type: String
+    Default: 0.0.0.0/0
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetR1AvailabilityZone:
+    Description: Availability zone of subnet
+    Type: String
+    Default: "us-east-1a"
+  SubnetR1HasNATGateway:
+    Description: Whether we need (NAT) Gateway
+    Type: String
+    Default: false
+
+  SubnetR2aSubnetId:
+    Description: Name of the variable for Subnet Id to Output
+    Type: String
+  SubnetR2aRouteTableId:
+    Description: Name of the variable for RouteTable Id to Output
+    Type: String
+  SubnetR2aCidrBlock:
+    Description: IP range for subnet
+    Type: String
+    Default: 10.0.0.0/24
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetR2aIsPublic:
+    Description: Set whether the subnet is public; sets MapPublicIpOnLaunch = true
+    Type: String
+    Default: true
+  SubnetR2aSubnetDestinationCidrBlock:
+    Type: String
+    Default: 0.0.0.0/0
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetR2aAvailabilityZone:
+    Description: Availability zone of subnet
+    Type: String
+    Default: "us-east-1a"
+  SubnetR2aHasNATGateway:
+    Description: Whether we need (NAT) Gateway
+    Type: String
+    Default: false
+
+  SubnetR2bSubnetId:
+    Description: Name of the variable for Subnet Id to Output
+    Type: String
+  SubnetR2bRouteTableId:
+    Description: Name of the variable for RouteTable Id to Output
+    Type: String
+  SubnetR2bCidrBlock:
+    Description: IP range for subnet
+    Type: String
+    Default: 10.0.0.0/24
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetR2bIsPublic:
+    Description: Set whether the subnet is public; sets MapPublicIpOnLaunch = true
+    Type: String
+    Default: true
+  SubnetR2bSubnetDestinationCidrBlock:
+    Type: String
+    Default: 0.0.0.0/0
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+  SubnetR2bAvailabilityZone:
+    Description: Availability zone of subnet
+    Type: String
+    Default: "us-east-1a"
+  SubnetR2bHasNATGateway:
+    Description: Whether we need (NAT) Gateway
+    Type: String
+    Default: false
+
+  InstanceJSubnetId:
+    Description: Name of variable for Subnet Id for the instance
+    Type: String
+  InstanceJImageId:
+    Description: ami Image Id
+    Type: String
+  InstanceJInstanceName:
+    Description: Name of the instance
+    Type: String
+  InstanceJSecurityGroupName:
+    Description: Name of the Security Group
+    Type: String
+  InstanceJInstanceKeyName:
+    Description: Name of the parameter store variable containing keypair name
+    Type: String
+  InstanceJEnvironment:
+    Description: Whether Dev, Test or Prod
+    Type: String
+    Default: Dev
+    AllowedValues:
+      - Dev
+      - Test
+      - Prod
+  InstanceJSecurityGroupEgressProtocol1:
+    Description: Egress 1 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceJSecurityGroupEgressIP1:
+    Description: Egress 1 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceJSecurityGroupEgressPort1:
+    Description: Egress 1 From/To ports
+    Type: Number
+  InstanceJSecurityGroupEgressProtocol2:
+    Description: Egress 2 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp
+    Default: icmp
+  InstanceJSecurityGroupEgressIP2:
+    Description: Egress 2 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceJSecurityGroupEgressPort2:
+    Description: Egress 2 From/To ports
+    Type: Number
+    Default: 0
+  InstanceJSecurityGroupEgressProtocol3:
+    Description: Egress 3 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp
+    Default: icmp
+  InstanceJSecurityGroupEgressIP3:
+    Description: Egress 3 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceJSecurityGroupEgressPort3:
+    Description: Egress 3 From/To ports
+    Type: Number
+    Default: 0
+  InstanceJSecurityGroupIngressProtocol1:
+    Description: Ingress 1 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceJSecurityGroupIngressIP1:
+    Description: Ingress 1 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceJSecurityGroupIngressPort1:
+    Description: Ingress 1 From/To ports
+    Type: Number
+  InstanceJSecurityGroupIngressProtocol2:
+    Description: Ingress 2 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceJSecurityGroupIngressIP2:
+    Description: Ingress 2 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceJSecurityGroupIngressPort2:
+    Description: Ingress 2 From/To ports
+    Type: Number  
+
+  InstanceFSubnetId:
+    Description: Name of variable for Subnet Id for the instance
+    Type: String
+  InstanceFImageId:
+    Description: ami Image Id
+    Type: String
+  InstanceFInstanceName:
+    Description: Name of the instance
+    Type: String
+  InstanceFSecurityGroupName:
+    Description: Name of the Security Group
+    Type: String
+  InstanceFInstanceKeyName:
+    Description: Name of the parameter store variable containing keypair name
+    Type: String
+  InstanceFEnvironment:
+    Description: Whether Dev, Test or Prod
+    Type: String
+    Default: Dev
+    AllowedValues:
+      - Dev
+      - Test
+      - Prod
+  InstanceFSecurityGroupEgressProtocol1:
+    Description: Egress 1 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceFSecurityGroupEgressIP1:
+    Description: Egress 1 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceFSecurityGroupEgressPort1:
+    Description: Egress 1 From/To ports
+    Type: Number
+  InstanceFSecurityGroupEgressProtocol2:
+    Description: Egress 2 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp
+    Default: icmp
+  InstanceFSecurityGroupEgressIP2:
+    Description: Egress 2 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceFSecurityGroupEgressPort2:
+    Description: Egress 2 From/To ports
+    Type: Number
+    Default: 0
+  InstanceFSecurityGroupEgressProtocol3:
+    Description: Egress 3 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp
+    Default: icmp
+  InstanceFSecurityGroupEgressIP3:
+    Description: Egress 3 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceFSecurityGroupEgressPort3:
+    Description: Egress 3 From/To ports
+    Type: Number
+    Default: 0
+  InstanceFSecurityGroupIngressProtocol1:
+    Description: Ingress 1 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceFSecurityGroupIngressIP1:
+    Description: Ingress 1 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceFSecurityGroupIngressPort1:
+    Description: Ingress 1 From/To ports
+    Type: Number
+  InstanceFSecurityGroupIngressProtocol2:
+    Description: Ingress 2 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceFSecurityGroupIngressIP2:
+    Description: Ingress 2 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceFSecurityGroupIngressPort2:
+    Description: Ingress 2 From/To ports
+    Type: Number
+
+  InstanceASubnetId:
+    Description: Name of variable for Subnet Id for the instance
+    Type: String
+  InstanceAImageId:
+    Description: ami Image Id
+    Type: String
+  InstanceAInstanceName:
+    Description: Name of the instance
+    Type: String
+  InstanceASecurityGroupName:
+    Description: Name of the Security Group
+    Type: String
+  InstanceAInstanceKeyName:
+    Description: Name of the parameter store variable containing keypair name
+    Type: String
+  InstanceAEnvironment:
+    Description: Whether Dev, Test or Prod
+    Type: String
+    Default: Dev
+    AllowedValues:
+      - Dev
+      - Test
+      - Prod
+  InstanceASecurityGroupEgressProtocol1:
+    Description: Egress 1 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceASecurityGroupEgressIP1:
+    Description: Egress 1 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceASecurityGroupEgressPort1:
+    Description: Egress 1 From/To ports
+    Type: Number
+  InstanceASecurityGroupEgressProtocol2:
+    Description: Egress 2 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp
+    Default: icmp
+  InstanceASecurityGroupEgressIP2:
+    Description: Egress 2 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceASecurityGroupEgressPort2:
+    Description: Egress 2 From/To ports
+    Type: Number
+    Default: 0
+  InstanceASecurityGroupEgressProtocol3:
+    Description: Egress 3 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp
+    Default: icmp
+  InstanceASecurityGroupEgressIP3:
+    Description: Egress 3 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceASecurityGroupEgressPort3:
+    Description: Egress 3 From/To ports
+    Type: Number
+    Default: 0
+  InstanceASecurityGroupIngressProtocol1:
+    Description: Ingress 1 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceASecurityGroupIngressIP1:
+    Description: Ingress 1 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceASecurityGroupIngressPort1:
+    Description: Ingress 1 From/To ports
+    Type: Number
+  InstanceASecurityGroupIngressProtocol2:
+    Description: Ingress 2 IP protocol
+    Type: String
+    AllowedValues:
+      - icmp
+      - tcp    
+  InstanceASecurityGroupIngressIP2:
+    Description: Ingress 2 IP range
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: 0.0.0.0/0
+  InstanceASecurityGroupIngressPort2:
+    Description: Ingress 2 From/To ports
+    Type: Number
+
+  DBInstanceDInstanceName:
+    Description: Name of the db instance
+    Type: String
+  DBInstanceDDBInstanceIdentifier:
+    Description: db instance identifier
+    Type: String
+  DBInstanceDVPCSecurityGroupsName:
+    Description: Name of the variable for security group
+    Type: String
+  DBInstanceDDBUsername:
+    Description: username of the db
+    Type: String
+  DBInstanceDDBPassword:
+    Description: Password of the db
+    Type: String
+  DBInstanceDDBSubnetGroupName:
+    Description: Subnet group's name
+    Type: String
+  DBInstanceDDBSubnetGroupDescription:
+    Description: Subnet group's description
+    Type: String
+  DBInstanceDSubnet1Id:
+    Description: First subnet Id
+    Type: String
+  DBInstanceDSubnet2Id:
+    Description: Second subnet Id
+    Type: String
+
+Resources:
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/VPC.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+
+  SubnetL1Stack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Subnet.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+        SubnetId: !Ref SubnetL1SubnetId
+        RouteTableId: !Ref SubnetL1RouteTableId
+        CidrBlock: !Ref SubnetL1CidrBlock
+        IsPublic: !Ref SubnetL1IsPublic
+        SubnetDestinationCidrBlock: !Ref SubnetL1SubnetDestinationCidrBlock
+        AvailabilityZone: !Ref SubnetL1AvailabilityZone
+        HasNATGateway: !Ref SubnetL1HasNATGateway
+
+  SubnetL2Stack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Subnet.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+        SubnetId: !Ref SubnetL2SubnetId
+        RouteTableId: !Ref SubnetL2RouteTableId
+        CidrBlock: !Ref SubnetL2CidrBlock
+        IsPublic: !Ref SubnetL2IsPublic
+        SubnetDestinationCidrBlock: !Ref SubnetL2SubnetDestinationCidrBlock
+        AvailabilityZone: !Ref SubnetL2AvailabilityZone
+        HasNATGateway: !Ref SubnetL2HasNATGateway
+
+  NATGatewayStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: SubnetL1Stack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/NATGateway.yml
+      Parameters:
+        PublicSubnetId: !Ref NATGatewayPublicSubnetId
+        NATGatewayId: !Ref NATGatewayNATGatewayId
+
+  SubnetR1Stack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: NATGatewayStack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Subnet.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref NATGatewayNATGatewayId
+        SubnetId: !Ref SubnetR1SubnetId
+        RouteTableId: !Ref SubnetR1RouteTableId
+        CidrBlock: !Ref SubnetR1CidrBlock
+        IsPublic: !Ref SubnetR1IsPublic
+        SubnetDestinationCidrBlock: !Ref SubnetR1SubnetDestinationCidrBlock
+        AvailabilityZone: !Ref SubnetR1AvailabilityZone
+        HasNATGateway: !Ref SubnetR1HasNATGateway
+
+  SubnetR2aStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Subnet.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+        SubnetId: !Ref SubnetR2aSubnetId
+        RouteTableId: !Ref SubnetR2aRouteTableId
+        CidrBlock: !Ref SubnetR2aCidrBlock
+        IsPublic: !Ref SubnetR2aIsPublic
+        SubnetDestinationCidrBlock: !Ref SubnetR2aSubnetDestinationCidrBlock
+        AvailabilityZone: !Ref SubnetR2aAvailabilityZone
+        HasNATGateway: !Ref SubnetR2aHasNATGateway
+
+  SubnetR2bStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Subnet.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+        SubnetId: !Ref SubnetR2bSubnetId
+        RouteTableId: !Ref SubnetR2bRouteTableId
+        CidrBlock: !Ref SubnetR2bCidrBlock
+        IsPublic: !Ref SubnetR2bIsPublic
+        SubnetDestinationCidrBlock: !Ref SubnetR2bSubnetDestinationCidrBlock
+        AvailabilityZone: !Ref SubnetR2bAvailabilityZone
+        HasNATGateway: !Ref SubnetR2bHasNATGateway
+
+  InstanceJStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: SubnetL1Stack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Instance.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+        SubnetId: !Ref InstanceJSubnetId
+        ImageId: !Ref InstanceJImageId
+        InstanceName: !Ref InstanceJInstanceName
+        SecurityGroupName: !Ref InstanceJSecurityGroupName
+        InstanceKeyName: !Ref InstanceJInstanceKeyName
+        Environment: !Ref InstanceJEnvironment
+        SecurityGroupEgressProtocol1: !Ref InstanceJSecurityGroupEgressProtocol1
+        SecurityGroupEgressIP1: !Ref InstanceJSecurityGroupEgressIP1
+        SecurityGroupEgressPort1: !Ref InstanceJSecurityGroupEgressPort1
+        SecurityGroupEgressProtocol2: !Ref InstanceJSecurityGroupEgressProtocol2
+        SecurityGroupEgressIP2: !Ref InstanceJSecurityGroupEgressIP2
+        SecurityGroupEgressPort2: !Ref InstanceJSecurityGroupEgressPort2
+        SecurityGroupEgressProtocol3: !Ref InstanceJSecurityGroupEgressProtocol3
+        SecurityGroupEgressIP3: !Ref InstanceJSecurityGroupEgressIP3
+        SecurityGroupEgressPort3: !Ref InstanceJSecurityGroupEgressPort3
+        SecurityGroupIngressProtocol1: !Ref InstanceJSecurityGroupIngressProtocol1
+        SecurityGroupIngressIP1: !Ref InstanceJSecurityGroupIngressIP1
+        SecurityGroupIngressPort1: !Ref InstanceJSecurityGroupIngressPort1
+        SecurityGroupIngressProtocol2: !Ref InstanceJSecurityGroupIngressProtocol2
+        SecurityGroupIngressIP2: !Ref InstanceJSecurityGroupIngressIP2
+        SecurityGroupIngressPort2: !Ref InstanceJSecurityGroupIngressPort2
+
+  InstanceFStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: SubnetL2Stack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Instance.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+        SubnetId: !Ref InstanceFSubnetId
+        ImageId: !Ref InstanceFImageId
+        InstanceName: !Ref InstanceFInstanceName
+        SecurityGroupName: !Ref InstanceFSecurityGroupName
+        InstanceKeyName: !Ref InstanceFInstanceKeyName
+        Environment: !Ref InstanceFEnvironment
+        SecurityGroupEgressProtocol1: !Ref InstanceFSecurityGroupEgressProtocol1
+        SecurityGroupEgressIP1: !Ref InstanceFSecurityGroupEgressIP1
+        SecurityGroupEgressPort1: !Ref InstanceFSecurityGroupEgressPort1
+        SecurityGroupEgressProtocol2: !Ref InstanceFSecurityGroupEgressProtocol2
+        SecurityGroupEgressIP2: !Ref InstanceFSecurityGroupEgressIP2
+        SecurityGroupEgressPort2: !Ref InstanceFSecurityGroupEgressPort2
+        SecurityGroupEgressProtocol3: !Ref InstanceFSecurityGroupEgressProtocol3
+        SecurityGroupEgressIP3: !Ref InstanceFSecurityGroupEgressIP3
+        SecurityGroupEgressPort3: !Ref InstanceFSecurityGroupEgressPort3
+        SecurityGroupIngressProtocol1: !Ref InstanceFSecurityGroupIngressProtocol1
+        SecurityGroupIngressIP1: !Ref InstanceFSecurityGroupIngressIP1
+        SecurityGroupIngressPort1: !Ref InstanceFSecurityGroupIngressPort1
+        SecurityGroupIngressProtocol2: !Ref InstanceFSecurityGroupIngressProtocol2
+        SecurityGroupIngressIP2: !Ref InstanceFSecurityGroupIngressIP2
+        SecurityGroupIngressPort2: !Ref InstanceFSecurityGroupIngressPort2
+
+  InstanceAStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: SubnetR1Stack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/Instance.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        GatewayId: !Ref GatewayId
+        SubnetId: !Ref InstanceASubnetId
+        ImageId: !Ref InstanceAImageId
+        InstanceName: !Ref InstanceAInstanceName
+        SecurityGroupName: !Ref InstanceASecurityGroupName
+        InstanceKeyName: !Ref InstanceAInstanceKeyName
+        Environment: !Ref InstanceAEnvironment
+        SecurityGroupEgressProtocol1: !Ref InstanceASecurityGroupEgressProtocol1
+        SecurityGroupEgressIP1: !Ref InstanceASecurityGroupEgressIP1
+        SecurityGroupEgressPort1: !Ref InstanceASecurityGroupEgressPort1
+        SecurityGroupEgressProtocol2: !Ref InstanceASecurityGroupEgressProtocol2
+        SecurityGroupEgressIP2: !Ref InstanceASecurityGroupEgressIP2
+        SecurityGroupEgressPort2: !Ref InstanceASecurityGroupEgressPort2
+        SecurityGroupEgressProtocol3: !Ref InstanceASecurityGroupEgressProtocol3
+        SecurityGroupEgressIP3: !Ref InstanceASecurityGroupEgressIP3
+        SecurityGroupEgressPort3: !Ref InstanceASecurityGroupEgressPort3
+        SecurityGroupIngressProtocol1: !Ref InstanceASecurityGroupIngressProtocol1
+        SecurityGroupIngressIP1: !Ref InstanceASecurityGroupIngressIP1
+        SecurityGroupIngressPort1: !Ref InstanceASecurityGroupIngressPort1
+        SecurityGroupIngressProtocol2: !Ref InstanceASecurityGroupIngressProtocol2
+        SecurityGroupIngressIP2: !Ref InstanceASecurityGroupIngressIP2
+        SecurityGroupIngressPort2: !Ref InstanceASecurityGroupIngressPort2
+
+  DBInstanceDStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: SubnetR1Stack
+    Properties:
+      TemplateURL: https://s3demo-l00171045.s3.amazonaws.com/DBInstance.yml
+      Parameters:
+        VPCId: !Ref VPCId
+        InstanceName: !Ref DBInstanceDInstanceName
+        DBInstanceIdentifier: !Ref DBInstanceDDBInstanceIdentifier
+        VPCSecurityGroupsName: !Ref DBInstanceDVPCSecurityGroupsName
+        DBUsername: !Ref DBInstanceDDBUsername
+        DBPassword: !Ref DBInstanceDDBPassword
+        DBSubnetGroupName: !Ref DBInstanceDDBSubnetGroupName
+        DBSubnetGroupDescription: !Ref DBInstanceDDBSubnetGroupDescription
+        Subnet1Id: !Ref DBInstanceDSubnet1Id
+        Subnet2Id: !Ref DBInstanceDSubnet2Id

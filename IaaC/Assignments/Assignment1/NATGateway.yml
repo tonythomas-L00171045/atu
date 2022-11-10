@@ -5,9 +5,6 @@ Parameters:
   NATGatewayId:
     Description: Name of the NAT GatewayId to Output
     Type: String
-  RouteTableId:
-    Description: Name of RouteTable to associate
-    Type: String
 
 Resources:
   # NAT Gateway meant for private subnet
@@ -26,14 +23,6 @@ Resources:
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
-
-  #RouteNATGateway:
-  #  DependsOn: NATGateway
-  #  Type: AWS::EC2::Route
-  #  Properties:
-  #    RouteTableId: !Ref RouteTableId
-  #    DestinationCidrBlock: '0.0.0.0/0'
-  #    NatGatewayId: !Ref NATGateway
 
 # Exports
 Outputs:

@@ -41,13 +41,15 @@ Conditions:
   CreatePublicRoute: !Equals 
     - !Ref IsPublic
     - true
-  CreateNATRoute: !Equals 
+  
+  # whether we need a route to NAT gateway
+  CreateNATRoute: !Equals
     - !Ref HasNATGateway
     - true
 
 Resources:
 
-  # Public Subnet
+  # Subnet to hold an EC2 Instance or DBInstance
   Subnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -62,7 +64,7 @@ Resources:
        - Key: Name
          Value: !Ref SubnetId
 
-  # RouteTable for Subnet1
+  # RouteTable for Subnet
   RouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -82,7 +84,7 @@ Resources:
       SubnetId: !Ref Subnet
 
   # Route for Public Subnet
-  Route:
+  GatewayRoute:
     Type: AWS::EC2::Route
     Condition: CreatePublicRoute
     Properties:
@@ -92,7 +94,7 @@ Resources:
         Fn::ImportValue: !Ref GatewayId
 
   # Route for NAT Gateway
-  Route:
+  NATGatewayRoute:
     Type: AWS::EC2::Route
     Condition: CreateNATRoute
     Properties:

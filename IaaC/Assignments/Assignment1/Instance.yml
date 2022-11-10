@@ -1,16 +1,16 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Template for creating ec2 instance, security group. Will have 2 set of Ingress and a single Egress
+Description: Template for creating ec2 instance, security group. Will have 2 set of Ingress and a max of three Egress(es)
 
 Parameters:
   VPCId:
-    Description: Name of VPC Id from Output
+    Description: Name of the variable for VPC Id from Output
     Type: String
   GatewayId:
-    Description: Name of Gateway Id from Output
+    Description: Name of variable for Gateway Id from Output
     Type: String
 
   SubnetId:
-    Description: Name of the Subnet Id to Output
+    Description: Name of variable for Subnet Id for the instance
     Type: String
   ImageId:
     Description: ami Image Id
@@ -22,8 +22,16 @@ Parameters:
     Description: Name of the Security Group
     Type: String
   InstanceKeyName:
-    Description: Name of the Security Group
+    Description: Name of the parameter store variable containing keypair name
     Type: String
+  Environment:
+    Description: Whether Dev, Test or Prod
+    Type: String
+    Default: Dev
+    AllowedValues:
+      - Dev
+      - Test
+      - Prod
 
   SecurityGroupEgressProtocol1:
     Description: Egress 1 IP protocol
@@ -31,12 +39,6 @@ Parameters:
     AllowedValues:
       - icmp
       - tcp    
-  SecurityGroupEgressIP1:
-    Description: Egress 1 IP range
-    Type: String
-    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
-    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
-    Default: 0.0.0.0/0
   SecurityGroupEgressIP1:
     Description: Egress 1 IP range
     Type: String
@@ -54,12 +56,6 @@ Parameters:
       - icmp
       - tcp
     Default: icmp
-  SecurityGroupEgressIP2:
-    Description: Egress 2 IP range
-    Type: String
-    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
-    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
-    Default: 0.0.0.0/0
   SecurityGroupEgressIP2:
     Description: Egress 2 IP range
     Type: String
@@ -84,12 +80,6 @@ Parameters:
     AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
     ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
     Default: 0.0.0.0/0
-  SecurityGroupEgressIP3:
-    Description: Egress 3 IP range
-    Type: String
-    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
-    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
-    Default: 0.0.0.0/0
   SecurityGroupEgressPort3:
     Description: Egress 3 From/To ports
     Type: Number
@@ -101,12 +91,6 @@ Parameters:
     AllowedValues:
       - icmp
       - tcp    
-  SecurityGroupIngressIP1:
-    Description: Ingress 1 IP range
-    Type: String
-    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
-    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
-    Default: 0.0.0.0/0
   SecurityGroupIngressIP1:
     Description: Ingress 1 IP range
     Type: String
@@ -129,12 +113,6 @@ Parameters:
     AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
     ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
     Default: 0.0.0.0/0
-  SecurityGroupIngressIP2:
-    Description: Ingress 2 IP range
-    Type: String
-    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
-    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
-    Default: 0.0.0.0/0
   SecurityGroupIngressPort2:
     Description: Ingress 2 From/To ports
     Type: Number  
@@ -151,6 +129,15 @@ Conditions:
     - 0
   CreateEgress3: !Not
     - Condition: HasDefaultEgress3
+
+Mappings: 
+  EnvironmentInstancePropMap: 
+    Dev: 
+      "InstanceType": "t2.micro"
+    Test: 
+      "InstanceType": "t2.small"
+    Prod: 
+      "InstanceType": "t2.large"
     
 Resources:
   # an EC2 instance depending on the below security group
@@ -158,7 +145,7 @@ Resources:
     Type: AWS::EC2::Instance
     DependsOn: ["securityGroup"]
     Properties:
-      InstanceType: t2.micro
+      InstanceType: !FindInMap [EnvironmentInstancePropMap, !Ref Environment, InstanceType]
       ImageId: !Ref ImageId
       KeyName: !Ref InstanceKeyName
       SecurityGroupIds: [!Ref securityGroup]

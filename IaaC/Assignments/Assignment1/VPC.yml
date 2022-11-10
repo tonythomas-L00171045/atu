@@ -7,7 +7,7 @@ Parameters:
     Type: String
     
 Resources:
-
+  # VPC
   demoVPC1:
     Type: AWS::EC2::VPC
     Properties:
@@ -18,7 +18,7 @@ Resources:
        - Key: Project
          Value: atudevopsdemo1
 
-  # INTERNET GATEWAY
+  # Internet GatewaY
   demoGateway1:
     Type: AWS::EC2::InternetGateway
     Properties:

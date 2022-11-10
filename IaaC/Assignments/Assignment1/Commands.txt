@@ -3,6 +3,7 @@ Setup stacks
 aws cloudformation create-stack --stack-name VPC --template-body file://VPC.yml --parameters file://VPC-parameters.json
 aws cloudformation create-stack --stack-name SubnetL1 --template-body file://Subnet.yml --parameters file://Subnet-L1-parameters.json
 aws cloudformation create-stack --stack-name SubnetL2 --template-body file://Subnet.yml --parameters file://Subnet-L2-parameters.json
+aws cloudformation create-stack --stack-name NatGatewayL --template-body file://NATGateway.yml --parameters file://NATGateway-parameter.json
 aws cloudformation create-stack --stack-name SubnetR1 --template-body file://Subnet.yml --parameters file://Subnet-R1-parameters.json
 aws cloudformation create-stack --stack-name SubnetR2a --template-body file://Subnet.yml --parameters file://Subnet-R2a-parameters.json
 aws cloudformation create-stack --stack-name SubnetR2b --template-body file://Subnet.yml --parameters file://Subnet-R2b-parameters.json
@@ -12,14 +13,18 @@ aws cloudformation create-stack --stack-name InstanceA --template-body file://In
 aws cloudformation create-stack --stack-name DbInstanceD --template-body file://DBInstance.yml --parameters file://DBInstance-D-parameters.json
 
 
+Run root stack
+==============
+aws cloudformation create-stack --stack-name Root --template-body file://RootStack.yml --parameters file://RootStack-parameters.json
 
-To Setup NAT gateway against
-============================
-aws cloudformation create-stack --stack-name NatGatewayL --template-body file://NATGateway.yml --parameters file://NATGateway-parameter.json
 
-Change permission of demoKey (KeyPair)
+Update package list in Debian
+=============================
+sudo apt-get update
+
+Install Postgres client tools in Debian
 =======================================
-chmod 400 demoKey1.pem
+sudo apt-get install postgresql-client
 
 Postgre command to connect to db instance
 =========================================

@@ -6,9 +6,5 @@
     {
 		"ParameterKey": "NATGatewayId",
 		"ParameterValue": "NATGatewayR"
-	},
-    {
-		"ParameterKey": "RouteTableId",
-		"ParameterValue": "demoRouteTableR1"
 	}
 ]
