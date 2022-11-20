@@ -1,4 +1,5 @@
 Parameters:
+  # Parameters for VPC stack
   VPCId:
     Description: Name of VPC Id Output
     Type: String
@@ -6,6 +7,7 @@ Parameters:
     Description: Name of Gateway Id Output
     Type: String
 
+  # Parameters for SubnetL1
   SubnetL1SubnetId:
     Description: Name of the variable for Subnet Id to Output
     Type: String
@@ -36,6 +38,7 @@ Parameters:
     Type: String
     Default: false
   
+  # Parameters for SubnetL2
   SubnetL2SubnetId:
     Description: Name of the variable for Subnet Id to Output
     Type: String
@@ -66,6 +69,7 @@ Parameters:
     Type: String
     Default: false
   
+  # Parameters for NATGateway
   NATGatewayPublicSubnetId:
     Description: Name of Subnet Id variable from Output
     Type: String
@@ -73,6 +77,7 @@ Parameters:
     Description: Name of the NAT GatewayId to Output
     Type: String
 
+  # Parameters for SubnetR1
   SubnetR1SubnetId:
     Description: Name of the variable for Subnet Id to Output
     Type: String
@@ -103,6 +108,7 @@ Parameters:
     Type: String
     Default: false
 
+  # Parameters for SubnetR2a
   SubnetR2aSubnetId:
     Description: Name of the variable for Subnet Id to Output
     Type: String
@@ -133,6 +139,7 @@ Parameters:
     Type: String
     Default: false
 
+  # Parameters for SubnetR2b
   SubnetR2bSubnetId:
     Description: Name of the variable for Subnet Id to Output
     Type: String
@@ -163,6 +170,7 @@ Parameters:
     Type: String
     Default: false
 
+  # Parameters for InstanceJ
   InstanceJSubnetId:
     Description: Name of variable for Subnet Id for the instance
     Type: String
@@ -266,6 +274,7 @@ Parameters:
     Description: Ingress 2 From/To ports
     Type: Number  
 
+  # Parameters for InstanceF
   InstanceFSubnetId:
     Description: Name of variable for Subnet Id for the instance
     Type: String
@@ -369,6 +378,7 @@ Parameters:
     Description: Ingress 2 From/To ports
     Type: Number
 
+  # Parameters for InstanceA
   InstanceASubnetId:
     Description: Name of variable for Subnet Id for the instance
     Type: String
@@ -472,6 +482,7 @@ Parameters:
     Description: Ingress 2 From/To ports
     Type: Number
 
+  # Parameters for DB instance
   DBInstanceDInstanceName:
     Description: Name of the db instance
     Type: String
@@ -501,6 +512,7 @@ Parameters:
     Type: String
 
 Resources:
+  # Main VPC 
   VPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
@@ -509,6 +521,7 @@ Resources:
         VPCId: !Ref VPCId
         GatewayId: !Ref GatewayId
 
+  # Public subnet with routes for instance J
   SubnetL1Stack:
     Type: AWS::CloudFormation::Stack
     DependsOn: VPCStack
@@ -525,6 +538,7 @@ Resources:
         AvailabilityZone: !Ref SubnetL1AvailabilityZone
         HasNATGateway: !Ref SubnetL1HasNATGateway
 
+  # Private subnet with routes for instance F
   SubnetL2Stack:
     Type: AWS::CloudFormation::Stack
     DependsOn: VPCStack
@@ -541,6 +555,7 @@ Resources:
         AvailabilityZone: !Ref SubnetL2AvailabilityZone
         HasNATGateway: !Ref SubnetL2HasNATGateway
 
+  # NATGateway to which SubnetR1 (for instance A) with routes is going to be attached
   NATGatewayStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: SubnetL1Stack
@@ -550,6 +565,7 @@ Resources:
         PublicSubnetId: !Ref NATGatewayPublicSubnetId
         NATGatewayId: !Ref NATGatewayNATGatewayId
 
+  # Private subnet with routes for instance A
   SubnetR1Stack:
     Type: AWS::CloudFormation::Stack
     DependsOn: NATGatewayStack
@@ -566,6 +582,7 @@ Resources:
         AvailabilityZone: !Ref SubnetR1AvailabilityZone
         HasNATGateway: !Ref SubnetR1HasNATGateway
 
+  # One of the two private subnet with routes for DB instance
   SubnetR2aStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: VPCStack
@@ -582,6 +599,7 @@ Resources:
         AvailabilityZone: !Ref SubnetR2aAvailabilityZone
         HasNATGateway: !Ref SubnetR2aHasNATGateway
 
+  # Second private subnet with routes for DB instance
   SubnetR2bStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: VPCStack
@@ -598,6 +616,7 @@ Resources:
         AvailabilityZone: !Ref SubnetR2bAvailabilityZone
         HasNATGateway: !Ref SubnetR2bHasNATGateway
 
+  # Instance J and its security group
   InstanceJStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: SubnetL1Stack
@@ -628,6 +647,7 @@ Resources:
         SecurityGroupIngressIP2: !Ref InstanceJSecurityGroupIngressIP2
         SecurityGroupIngressPort2: !Ref InstanceJSecurityGroupIngressPort2
 
+  # Instance F and its security group
   InstanceFStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: SubnetL2Stack
@@ -658,6 +678,7 @@ Resources:
         SecurityGroupIngressIP2: !Ref InstanceFSecurityGroupIngressIP2
         SecurityGroupIngressPort2: !Ref InstanceFSecurityGroupIngressPort2
 
+  # Instance A and its security group
   InstanceAStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: SubnetR1Stack
@@ -688,6 +709,7 @@ Resources:
         SecurityGroupIngressIP2: !Ref InstanceASecurityGroupIngressIP2
         SecurityGroupIngressPort2: !Ref InstanceASecurityGroupIngressPort2
 
+  # DB instance and its security group and subnet group
   DBInstanceDStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: SubnetR1Stack

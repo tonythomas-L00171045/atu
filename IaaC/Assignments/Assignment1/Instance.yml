@@ -118,19 +118,27 @@ Parameters:
     Type: Number  
 
 Conditions:
+  
+  # Whether the instance need a second egress route
   HasDefaultEgress2: !Equals
     - !Ref SecurityGroupEgressPort2
     - 0
+  
+  # Whether to create a second egress route
   CreateEgress2: !Not
     - Condition: HasDefaultEgress2
 
+  # Whether the instance need a third egress route
   HasDefaultEgress3: !Equals
     - !Ref SecurityGroupEgressPort3
     - 0
+  
+  # Whether to create a third egress route
   CreateEgress3: !Not
     - Condition: HasDefaultEgress3
 
 Mappings: 
+  # Determin instance type
   EnvironmentInstancePropMap: 
     Dev: 
       "InstanceType": "t2.micro"

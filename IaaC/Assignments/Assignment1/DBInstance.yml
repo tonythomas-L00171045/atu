@@ -52,6 +52,7 @@ Resources:
     DeletionPolicy: Snapshot
     UpdateReplacePolicy: Snapshot
 
+  # Subnet group to combine two subnets
   DBSubnet:
     Type: AWS::RDS::DBSubnetGroup
     Properties: 
@@ -64,6 +65,7 @@ Resources:
         - Key: Name
           Value: !Ref DBSubnetGroupName
 
+  # Security group to allow tcp on postgre port
   DBEC2SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
