@@ -1,0 +1,28 @@
+*************************************************
+* Servers Information
+*************************************************
+ComputerName	UserName
+------------	--------
+Server1		tmathewt
+
+*************************************************
+* EventLog - Errors and Warnings
+*************************************************
+ComputerName	EntryType	Index	Source	InstanceID	Message
+------------	---------	-----	------	----------	-------------------------
+Server1		Warning	1	WMI		1024		This account is privileged and the provider may cause a security violation if it does not correctly impersonate user requests.
+
+*************************************************
+* Network Information
+*************************************************
+ComputerName	RemoteAddress			NameResolutionResults		InterfaceAlias	SourceAddress			NetRoute	PingSucceeded	PingReplyDetails
+------------	-------------			---------------------		--------------	-------------			--------	-------------	----------------
+Server1		fe80::8d15:ded3:fca0:8740%3	2001:bb6:af1:fb00:dc73:417...	Wi-Fi			2001:bb6:af1:fb00:303e:5f4...	::		True			0 ms
+
+*************************************************
+* Open Ports
+*************************************************
+ComputerName	Port	Open
+------------	----	----
+Server1		22	True
+Server1		80	False
