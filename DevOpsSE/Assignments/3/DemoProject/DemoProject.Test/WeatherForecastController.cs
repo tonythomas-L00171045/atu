@@ -14,7 +14,7 @@ namespace DemoProject.Test
         }        
 
         [TestMethod]
-        public void TestMethod1()
+        public void GetReturnsWeatherForecasts()
         {
 
             Controllers.WeatherForecastController wc = new Controllers.WeatherForecastController(_logger);
